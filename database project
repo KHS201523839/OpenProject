@@ -1,0 +1,17 @@
+CREATE TABLE 고객 (
+  고객아이디 VARCHAR2(20 BYTE) NOT NULL ,
+  비밀번호 VARCHAR2(20 BYTE) NOT NULL ,
+  이름 VARCHAR2(20 BYTE) NOT NULL ,
+  주소 VARCHAR2(40 BYTE) NOT NULL ,
+  전화번호 VARCHAR2(20 BYTE) NOT NULL ,
+  주민번호 VARCHAR2(20 BYTE) NOT NULL ,
+  CONSTRAINT CUSTOMER_PK PRIMARY KEY (고객아이디 )
+  )
+INSERT INTO 고객 VALUES('aa11','1234','김형수','부산시 부평동','010-0000-1111','950318-1******');
+INSERT INTO 고객 VALUES('bb22','1234','홍길동','부산시 양정동','010-0000-2222','970420-1******');
+INSERT INTO 고객 VALUES('cc33','1234','아이유','서울시 논현동','010-0000-3333','930516-2******');
+INSERT INTO 고객 VALUES('dd44','1234','이상혁','서울시 상암동','010-0000-4444','960507-1******');
+INSERT INTO 고객 VALUES('ee55','1234','박천수','부산시 당리동','010-0000-5555','980617-1******');
+INSERT INTO 고객 VALUES('ff66','1234','최우수','김해시 내서동','010-0000-6666','991218-1******');
+INSERT INTO 고객 VALUES('gg77','1234','박철권','부산시 덕천동','010-0000-7777','971012-1******');
+INSERT INTO 고객 VALUES('hh88','1234','아이린','서울시 서초동','010-0000-8888','910329-2******');
