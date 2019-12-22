@@ -51,3 +51,76 @@ INSERT INTO 주문 VALUES('O003','cc33','P003','노트북','1','2019-10-10');
 INSERT INTO 주문 VALUES('O004','dd44','P004','코트','1','2019-12-09');
 INSERT INTO 주문 VALUES('O005','ee55','P005','에어컨','1','2019-11-24');
 INSERT INTO 주문 VALUES('O006','ff66','P006','황금란','2','2019-11-16');
+
+CREATE TABLE 판매자 (
+  판매자아이디 VARCHAR2(20 BYTE) NOT NULL ,
+  이름 VARCHAR2(20 BYTE) ,
+  전화번호 VARCHAR2(20 BYTE) ,
+  제품이름 VARCHAR2(20 BYTE) ,
+  주민번호 VARCHAR2(20 BYTE) ,
+  CONSTRAINT 판매자_PK PRIMARY KEY (판매자아이디 )
+)
+INSERT INTO 판매자 VALUES('abc1','김판매','010-1111-2222','후드티','851211-1******');
+INSERT INTO 판매자 VALUES('abc2','김연우','010-2222-3333','신라면','910415-1******');
+INSERT INTO 판매자 VALUES('abc3','김윤아','010-3333-4444','노트북','891021-2******');
+INSERT INTO 판매자 VALUES('abc4','김좌진','010-4444-5555','황금란','910517-1******');
+INSERT INTO 판매자 VALUES('abc5','김초롱','010-5555-6666','에어컨','940910-2******');
+INSERT INTO 판매자 VALUES('abc6','차은우','010-6666-7777','코트','950528-1******');
+
+CREATE TABLE 장바구니 (
+  일련번호 VARCHAR2(20 BYTE) NOT NULL ,
+  제품번호 VARCHAR2(20 BYTE) NOT NULL ,
+  고객아이디 VARCHAR2(20 BYTE) NOT NULL ,
+  제품명 VARCHAR2(30 BYTE) ,
+  제품개수 VARCHAR2(20 BYTE) ,
+  이름 VARCHAR2(20 BYTE) ,
+  CONSTRAINT SHOPPINGBASKET_PK PRIMARY KEY  (일련번호 )
+  )
+  ALTER TABLE 장바구니
+ADD CONSTRAINT 장바구니_FK1 FOREIGN KEY(제품번호 )
+REFERENCES 제품(  제품번호 )
+ENABLE;
+ALTER TABLE 장바구니
+ADD CONSTRAINT 장바구니_FK2 FOREIGN KEY( 고객아이디 )
+REFERENCES 고객( 고객아이디 )
+ENABLE;
+
+INSERT INTO 장바구니 VALUES('S001','P002','dd44','신라면','10','이상혁');
+INSERT INTO 장바구니 VALUES('S002','P003','dd44','노트북','1','이상혁');
+INSERT INTO 장바구니 VALUES('S003','P008','dd44','치즈','3','이상혁');
+
+CREATE TABLE 문의게시판 (
+  게시글번호 NUMBER(*, 0) NOT NULL ,
+  고객아이디 VARCHAR2(20 BYTE) ,
+  문의분류 VARCHAR2(20 BYTE) ,
+  제목 VARCHAR2(40 BYTE) ,
+  내용 VARCHAR2(60 BYTE) ,
+  CONSTRAINT INQUIRYBOARD_PK PRIMARY KEY (  게시글번호  ) 
+  )
+ALTER TABLE 문의게시판
+ADD CONSTRAINT 문의게시판_FK1 FOREIGN KEY(고객아이디 )
+REFERENCES 고객(고객아이디 )
+ENABLE;
+INSERT INTO 문의게시판 VALUES(001,'aa11','주문','상품이 안와요','후드티를 시켰는데 도착을 안합니다');
+INSERT INTO 문의게시판 VALUES(002,'ee55','상품','정보문의','제가산 주문 목록을 보고싶어요');
+INSERT INTO 문의게시판 VALUES(003,'dd44','회원정보','회원정보 변경','회원 정보를 바꾸고 싶은데 어떻게 하나요?');
+
+CREATE TABLE 주문항목 (
+  주문번호 VARCHAR2(20 BYTE) NOT NULL ,
+  제품번호 VARCHAR2(20 BYTE) NOT NULL ,
+  수량 VARCHAR2(20 BYTE) ,
+  CONSTRAINT SYS_C0012416 PRIMARY KEY (주문번호 , 제품번호  )
+  )
+  ALTER TABLE 주문항목
+ADD CONSTRAINT 주문항목_FK1 FOREIGN KEY( 제품번호 )
+REFERENCES 제품(  제품번호 )
+ENABLE;
+ALTER TABLE 주문항목
+ADD CONSTRAINT 주문항목_FK2 FOREIGN KEY(주문번호 )
+REFERENCES 주문(주문번호 )
+ENABLE;
+INSERT INTO 주문항목 VALUES('O003','P003','1');
+INSERT INTO 주문항목 VALUES('O001','P001','2');
+INSERT INTO 주문항목 VALUES('O005','P005','1');
+INSERT INTO 주문항목 VALUES('O004','P004','1');
+INSERT INTO 주문항목 VALUES('O002','P002','9');
