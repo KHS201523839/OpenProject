@@ -124,3 +124,17 @@ INSERT INTO 주문항목 VALUES('O001','P001','2');
 INSERT INTO 주문항목 VALUES('O005','P005','1');
 INSERT INTO 주문항목 VALUES('O004','P004','1');
 INSERT INTO 주문항목 VALUES('O002','P002','9');
+
+select * from 고객 where 이름 like '김%';
+
+select * from 고객 where 이름 = '박철권';
+
+select * from 제품 where 가격 >= 30000;
+
+select * from 판매자 where 판매자아이디 in ('abc4', 'abc6');
+
+select * from 제품 where (제품이름 = '후드티') or (가격 >= 30000);
+
+select 주민번호 from 판매자 where 제품이름 = '황금란';
+
+select * from 고객 where 고객아이디 not in(select 고객아이디 from 주문 group by 고객아이디 having count(*)>0);
