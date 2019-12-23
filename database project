@@ -150,3 +150,29 @@ select sum(수량) as 더한가격 from 주문항목;
 select *from 고객 where 주소 like '부산시%';
 
 select 제품번호 as itemnum, 제품이름 as itemname, 가격 as price from 제품;
+
+delete from 고객 where 이름 = '아이린';
+
+select * from 고객 left outer join 주문 on 고객."고객아이디" = 주문."고객아이디";
+
+insert into 제품 values('P009','마우스','25000');
+
+update 장바구니 set 제품명 = '마우스' where 일려번호 = 'S002';
+
+select * from 고객 order by 주민번호 desc;
+
+select * from 주문 , 고객 where 고객."고객아이디" = 주문."고객아이디" and 상품명 = '코트';
+
+select 주문."주문일",주문."상품명",고객."이름",고객"주소" from 고객, 주문 where 고객."고객아이디" = 주문."고객아이디";
+
+select * from 고객 inner join 주문 on 고객."고객아이디" = 주문."고객아이디";
+
+select * from 문의게시판 where 문의게시판."문의분류" = "상품";
+
+select * from 고객 order by "이름" ASC;
+
+insert into 판매자 values('abc7','이상호','010-7777-8888','후드티','930320-1******');
+
+select distinct 제품."제품이름",주문."주문일" from 제품,주문 where 주문."제품번호" = 제품."제품번호";
+
+select count(고객."주소")as 고객수 from 고객 where 주소 like '서울시%';
